@@ -1,6 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
 const thoughtSchema = require("./Thought");
-import { isEmail } from "validator"; // validator module for emails
+const { isEmail } = require("validator"); // validator module for emails
 
 const userSchema = new Schema(
   {
