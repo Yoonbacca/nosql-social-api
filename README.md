@@ -4,6 +4,8 @@
 
 ![NoSQL Social API](./assets/screenshot.png)
 
+[Video Walkthrough](https://drive.google.com/file/d/1RzCMZTrCLFwxGgorC7VF9Ev6qwTiPIKT/view)
+
 This is a backend API to demonstrate the use of NoSQL and Mongoose. This was created using concepts learned from NW Coding Bootcamp. The repo consists of basic models for users, thoughts, and a separate schema reactions.
 
 When running the server, you may use a service like Postman or Insomnia perform CRUD operations on both users and thoughts.
