@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const thoughtSchema = require("./Thought");
-import { isEmail } from "validator";
+import { isEmail } from "validator"; // validator module for emails
 
 const userSchema = new Schema(
   {
@@ -31,11 +31,18 @@ const userSchema = new Schema(
   },
   {
     toJSON: {
+      virtuals: true,
       getters: true,
     },
+    id: false,
   }
 );
 
-const User = model("user", userSchema);
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
+
+// Init User Model
+const User = model("User", userSchema);
 
 module.exports = User;
