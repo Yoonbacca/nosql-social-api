@@ -6,10 +6,7 @@ module.exports = {
   async getAllUsers(req, res) {
     try {
       const users = await User.find();
-      const userObj = {
-        users,
-      };
-      return res.json(userObj);
+      return res.json(users);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -26,9 +23,7 @@ module.exports = {
         return res.status(404).json({ message: "No user with that ID" });
       }
 
-      res.json({
-        user,
-      });
+      res.json(user);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -81,6 +76,9 @@ module.exports = {
         { $push: { friends: friendId } },
         { new: true, runValidators: true }
       );
+      if (!user) {
+        return res.status(404).json({ message: "No user with this id!" });
+      }
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
@@ -95,6 +93,9 @@ module.exports = {
         { $pull: { friends: friendId } },
         { new: true, runValidators: true }
       );
+      if (!user) {
+        return res.status(404).json({ message: "No user with this id!" });
+      }
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
